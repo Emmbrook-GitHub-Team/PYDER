@@ -100,7 +100,7 @@ def Hello():
 	# is called it will say hello and then
 	# take query
 
-	speak("hello if arnee, how may I help you")
+	speak("hello , how may I help you")
 
 
 def Take_query():
