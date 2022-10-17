@@ -1,12 +1,27 @@
 import pyttsx3
-import speech_recognition as sr
-import webbrowser
-import datetime
+import speech_recognition as sr																																																																														
+import webbrowser																																	
+import datetime																														
 import wikipedia
 import pyjokes
 import subprocess,os
-print("Welcome to ifeanyi's virtual assistant app: you need a mic to use this application\nprogram will close or will not work if mic not found\n\nTo view commands, say commands:")
+import urllib.request
+from datetime import date
 
+
+
+
+def connect(host='http://google.com'):
+    try:
+        urllib.request.urlopen(host) #Python 3.x
+        return True
+    except:
+        return False
+# test
+print( "Wifi Connected" if connect() else "no internet!" )
+
+print("Welcome to ifeanyi's virtual assistant app: you need a mic to use this application\nprogram will close or will not work if mic not found\n\nTo view commands, say commands:\nTo open Extra say 'Extra'")
+print("© Copyright 2022 Ifeanyi Onuama. All rights reserved")
 # this method is for taking the commands
 # and recognizing the command from the
 # speech_Recognition module we will use
@@ -92,6 +107,17 @@ def tellTime():
         current_time = time.strftime("%H:%M:%S", t)
         speak("the time:")
         print(current_time)
+
+def tellAge():
+
+        import time
+
+        current_year = date.today().year
+        age = current_year - 2021
+        intage = int(age)
+        speak(intage)
+
+    
 	
 
 def Hello():
@@ -100,7 +126,7 @@ def Hello():
 	# is called it will say hello and then
 	# take query
 
-	speak("hello , how may I help you")
+	speak("hello, how may I help you")
 
 
 def Take_query():
@@ -125,7 +151,7 @@ def Take_query():
 			
 			# in the open method we just to give the link
 			# of the website and it automatically open
-			# it in your default browser
+			# it in your default browser most likely chrome
 			webbrowser.open("https://www.coolmathgames.com/")
 			continue
 		
@@ -136,13 +162,24 @@ def Take_query():
 			webbrowser.open("https://translate.google.com/")
 			continue
 
-		elif "search" in query:
-			speak("loading google search ")
-			import pywhatkit as kt
-			target = query
-			kt.search(target)
+
+		elif "hello" in query:
+			speak("hello?  ")
+	    
 			continue
 
+		elif "extra" in query:
+			webbrowser.open("https://www.codepunker.com/terminal/")
+	    
+			continue
+
+
+		elif "search" in query:
+			speak("loading google search ")		
+			target = input("Search here: ")
+			import pywhatkit as kt
+			kt.search(target)
+			continue
 
 		elif "commands" in query:
 			speak("opening commands ")
@@ -169,7 +206,7 @@ def Take_query():
 
 		elif "music" in query:
 			speak("playing music ")
-			webbrowser.open("https://www.youtube.com/watch?v=l_9y2czDCaY")
+			webbrowser.open("https://www.youtube.com/watch?v=qrCdEh32rtM")
 			continue
 
 		elif "joke" in query:
@@ -177,6 +214,7 @@ def Take_query():
 			joke=pyjokes.get_joke(language='en', category= 'neutral')
 			speak(joke)
 			speak("hahaha ")
+			continue
 			
 
 
@@ -200,12 +238,7 @@ def Take_query():
 		
 		elif "time" in query:
 			tellTime()
-			continue
-		
-		# this will exit and terminate the program
-		elif "close program" in query:
-			speak("goodBye. Check Out CoderIfarnee on Github for more projects")
-			exit()
+			continue			
 		
 		elif "who is" in query:
 			
@@ -223,6 +256,25 @@ def Take_query():
 		
 		elif "tell me your name" in query:
 			speak("I am PYDER, Coded by Ifarnee and Your desktop Assistant")
+			continue
+
+		elif "shut up" in query:
+			speak("please don't be rude")
+			continue
+
+		elif "old are you" in query:
+			tellAge()
+			continue
+                            
+		# this will exit and terminate the program
+		elif "close program" in query:
+			speak("goodBye. Check Out Coder If arnee on Github for more projects")
+			exit()
+
+		
+
+                    
+
 
 if __name__ == '__main__':
 	
