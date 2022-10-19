@@ -107,7 +107,34 @@ def tellTime():
         current_time = time.strftime("%H:%M:%S", t)
         speak("the time:")
         print(current_time)
+def maths():
+    webbrowser.open("www.mathswatch.com")
 
+def english():
+    webbrowser.open("www.commonlit.com")
+
+def science():
+    webbrowser.open("www.tassomai.com")
+
+def languages():
+    webbrowser.open("https://zut.languageskills.co.uk/")
+
+
+def homework():
+    speak("What type of homework would you like to open")
+    homework = input("Maths, Science, English, Language: ")
+    if homework == 'maths':
+        maths()
+
+    if homework == 'science':
+        science()
+
+    if homework == 'language':
+        languages()
+        
+    if homework == 'english':
+        english()
+        
 def tellAge():
 
         import time
@@ -226,9 +253,7 @@ def Take_query():
 			continue
 
 		elif "homework" in query:
-			speak("opening homework sites ")
-			webbrowser.open("https://www.satchelone.com/")
-			webbrowser.open("https://vle.mathswatch.co.uk/vle/")
+			homework()
 			continue
 
                
